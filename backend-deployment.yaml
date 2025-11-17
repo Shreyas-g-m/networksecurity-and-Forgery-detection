@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: forgery-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: forgery-backend
+  template:
+    metadata:
+      labels:
+        app: forgery-backend
+    spec:
+      containers:
+      - name: backend
+        image: forgeryacr.azurecr.io/forgery-backend:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000 

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: forgery-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: forgery-frontend
+  template:
+    metadata:
+      labels:
+        app: forgery-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: forgeryacr.azurecr.io/forgery-frontend:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi" 
+            cpu: "500m"
